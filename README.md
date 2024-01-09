@@ -50,10 +50,10 @@ dependencyResolutionManagement {
 On your app gradle add:
 ```gradle
 //If you use Groovy DSL
-implementation 'com.github.lighttigerXIV:layout-scaffold:1.0.2'
+implementation 'com.github.lighttigerXIV:layout-scaffold:1.1.0'
 
 //If you use Kotlin DSL
-implementation ("com.github.lighttigerXIV:layout-scaffold:1.0.2")
+implementation ("com.github.lighttigerXIV:layout-scaffold:1.1.0")
 ```
 
 ### How to use
