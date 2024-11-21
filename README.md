@@ -61,7 +61,7 @@ To use it just simply use it like this:
 ```kotlin
 LayoutScaffold(
   navigationBar = { isTablet, inLandscape ->
-      // Your portrait navbar content
+      // Your navbar content
   }
 ){isTablet, inLandscape ->
   // Your app content
