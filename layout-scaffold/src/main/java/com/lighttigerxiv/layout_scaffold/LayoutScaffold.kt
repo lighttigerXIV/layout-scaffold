@@ -25,20 +25,40 @@ fun LayoutScaffold(
     val isTablet = isTablet()
 
     if (inPortrait) {
-        Column(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .weight(1f, fill = true)
+        if(isTablet){
+            Row(
+                modifier = Modifier.fillMaxSize()
             ) {
-                content(isTablet, false)
+                Column(
+                    modifier = Modifier.fillMaxHeight()
+                ) {
+                    navigationBar(true, true)
+                }
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .weight(1f, fill = true)
+                ) {
+                    content(true, true)
+                }
             }
+        }else{
             Column(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxSize()
             ) {
-                navigationBar(isTablet, false)
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .weight(1f, fill = true)
+                ) {
+                    content(false, false)
+                }
+                Column(
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    navigationBar(false, false)
+                }
             }
         }
     } else {
