@@ -50,32 +50,46 @@ dependencyResolutionManagement {
 On your app gradle add:
 ```gradle
 //If you use Groovy DSL
-implementation 'com.github.lighttigerXIV:layout-scaffold:1.1.0'
+implementation 'com.github.lighttigerXIV:layout-scaffold:2.0.0'
 
 //If you use Kotlin DSL
-implementation ("com.github.lighttigerXIV:layout-scaffold:1.1.0")
+implementation ("com.github.lighttigerXIV:layout-scaffold:2.0.0")
 ```
 
 ### How to use
 To use it just simply use it like this:
 ```kotlin
 LayoutScaffold(
-  portraitNavigationBar = {
+  navigationBar = { isTablet, inLandscape ->
       // Your portrait navbar content
-  },
-  landscapeNavigationBar = {
-      // Your landscape navbar content
   }
 ){isTablet, inLandscape ->
   // Your app content
 }
 ```
 
-**Note:** The portraitNavigationBar and landscapeNavigationBar are optional so you may only need the following:
+> [!NOTE]
+> The navigation bar is optional so you may only need the following:
+
 ```kotlin
 LayoutScaffold{isTablet, inLandscape ->
   // Your app content
 }
 ```
 
+### Utils
+To check if the device is a phone:
+```kotlin
+val isPhone = isPhone()
+```
+
+To check if the device is a tablet:
+```kotlin
+val isTablet = isTablet()
+```
+
+To check if the device is a foldable:
+```kotlin
+val isFoldable = isFoldable()
+```
 
