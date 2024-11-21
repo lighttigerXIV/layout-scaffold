@@ -103,27 +103,35 @@ val isFoldable = isFoldable()
 # How to Implement Foldables
 I don't have a good way to make a wrapper for this so i leave here how to check if a foldable is half open, fully open or closed. It might help someone :)
 
+## Add Window Library
+```gradle
+implementation("androidx.window:window:1.3.0")
+```
+
+## Add lifecycle listener in MainActivity
 ```kotlin
 @AndroidEntryPoint
 class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        lifecycleScope.launch{
+          lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
             WindowInfoTracker.getOrCreate(this@MainActivity)
-                .windowLayoutInfo(this@MainActivity)
-                .collect { layoutInfo ->
-                    // This folding feature returns the state of the folding.
-                    // It will return null if the device isn't a foldable or the foldable it's closed.
-                    val foldingFeature = layoutInfo.displayFeatures.filterIsInstance<FoldingFeature>().firstOrNull()
-
-                    val isFullyOpen = foldingFeature?.state == FoldingFeature.State.FLAT
-                    val isHalfOpen = foldingFeature?.state == FoldingFeature.State.HALF_OPENED
-                    val isOpen = isFullyOpen || isHalfOpen
-
-                    // Now you can send the data you need to your repository assuming
-                    // you can properly code on Android :P
-                }
+              .windowLayoutInfo(this@MainActivity)
+              .collect { layoutInfo ->
+                // This folding feature returns the state of the folding.
+                // It will return null if the device isn't a foldable or the foldable it's closed.
+                val foldingFeature = layoutInfo.displayFeatures.filterIsInstance<FoldingFeature>().firstOrNull()
+  
+                val isFullyOpen = foldingFeature?.state == FoldingFeature.State.FLAT
+                val isHalfOpen = foldingFeature?.state == FoldingFeature.State.HALF_OPENED
+                val isOpen = isFullyOpen || isHalfOpen
+  
+                // Now you can send the data you need to your repository assuming
+                // you can properly code on Android :P
+              }
+          }
         }
   }
 }
