@@ -109,7 +109,6 @@ class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        ...
         lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
             WindowInfoTracker.getOrCreate(this@MainActivity)
                 .windowLayoutInfo(this@MainActivity)
