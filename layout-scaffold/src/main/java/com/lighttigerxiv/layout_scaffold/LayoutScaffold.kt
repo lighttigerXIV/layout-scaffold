@@ -17,7 +17,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 
 @Composable
 fun LayoutScaffold(
-    navigationBar: @Composable ColumnScope.(isTablet: Boolean, inLandscape: Boolean) -> Unit,
+    navigationBar: @Composable ColumnScope.(isTablet: Boolean, inLandscape: Boolean) -> Unit = { _, _ -> },
     content: @Composable ColumnScope.(isTablet: Boolean, inLandscape: Boolean) -> Unit,
 ) {
 
