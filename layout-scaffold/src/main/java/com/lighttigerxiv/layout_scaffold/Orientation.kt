@@ -10,12 +10,6 @@ fun inLandscape(): Boolean{
 }
 
 @Composable
-fun isTablet(): Boolean{
-    val configuration = LocalConfiguration.current
-
-    return if(inLandscape()){
-        configuration.screenWidthDp > 1000
-    }else{
-        configuration.screenWidthDp > 750
-    }
+fun inPortrait(): Boolean{
+    return LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
 }

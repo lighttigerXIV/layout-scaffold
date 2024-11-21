@@ -17,34 +17,17 @@ import androidx.compose.ui.platform.LocalConfiguration
 
 @Composable
 fun LayoutScaffold(
-    portraitNavigationBar: @Composable RowScope.(isTablet: Boolean) -> Unit = {},
-    landscapeNavigationBar: @Composable ColumnScope.(isTablet: Boolean) -> Unit = {},
+    navigationBar: @Composable ColumnScope.(isTablet: Boolean, inLandscape: Boolean) -> Unit,
     content: @Composable ColumnScope.(isTablet: Boolean, inLandscape: Boolean) -> Unit,
 ) {
 
-    val configuration = LocalConfiguration.current
-    val inLandscape by remember { mutableStateOf(configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) }
-    val isTablet by remember {
-        mutableStateOf(
-            if (inLandscape) {
-                configuration.screenWidthDp > 1000
-            } else {
-                configuration.screenWidthDp > 750
-            }
-        )
-    }
+    val inPortrait = inPortrait()
+    val isTablet = isTablet()
 
-    if (inLandscape) {
-        Row(modifier = Modifier.fillMaxSize()) {
-            Column(modifier = Modifier.fillMaxHeight()) {
-                landscapeNavigationBar(isTablet)
-            }
-            Column(modifier = Modifier.fillMaxSize()) {
-                content(isTablet, true)
-            }
-        }
-    } else {
-        Column(modifier = Modifier.fillMaxSize()) {
+    if (inPortrait) {
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -52,9 +35,28 @@ fun LayoutScaffold(
             ) {
                 content(isTablet, false)
             }
+            Column(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                navigationBar(isTablet, false)
+            }
+        }
+    } else {
+        Row(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Column(
+                modifier = Modifier.fillMaxHeight()
+            ) {
+                navigationBar(isTablet, true)
+            }
 
-            Row(modifier = Modifier.fillMaxWidth()) {
-                portraitNavigationBar(isTablet)
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .weight(1f, fill = true)
+            ) {
+                content(isTablet, true)
             }
         }
     }
