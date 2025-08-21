@@ -32,22 +32,12 @@ This composable can detect if the device is a tablet too which can be handy depe
 
 # How to add the library
 ## Adding Jitpack URL
-If you use Groovy DSL (settings.gradle)
-```gradle
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        //...
-        maven { url 'https://jitpack.io' }
-    }
-}
-```
-If you use Kotlin DSL (settings.gradle):
+Add maven in your (settings.gradle):
 ```gradle
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
-      //...
+      // Other URLs
       maven("https://jitpack.io")
   }
 }
@@ -56,13 +46,8 @@ dependencyResolutionManagement {
 ## Adding dependency in gradle
 On your app gradle add:
 ```gradle
-//If you use Groovy DSL
-implementation 'com.github.lighttigerXIV:layout-scaffold:2.0.2'
-
-//If you use Kotlin DSL
 implementation ("com.github.lighttigerXIV:layout-scaffold:2.0.2")
 ```
-
 # How to use
 To use it just simply use it like this:
 ```kotlin
