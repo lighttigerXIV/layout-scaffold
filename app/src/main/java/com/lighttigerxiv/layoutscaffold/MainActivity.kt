@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -69,111 +70,118 @@ class MainActivity : ComponentActivity() {
 
 
 
-                LayoutScaffold(
-                    navigationBar = { isTablet, inLandscape ->
-                        if (isTablet) {
-                            Row(
-                                modifier = Modifier
-                                    .width(200.dp)
-                                    .fillMaxHeight()
-                                    .background(MaterialTheme.colorScheme.surfaceVariant)
-                                    .padding(16.dp)
-                            ) {
-                                Text(
-                                    if (inLandscape) "Landscape Tablet Navbar" else "Tablet Navbar",
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-                        } else if (inLandscape) {
-                            Row(
-                                modifier = Modifier
-                                    .width(100.dp)
-                                    .fillMaxHeight()
-                                    .background(MaterialTheme.colorScheme.surfaceVariant)
-                                    .padding(16.dp)
-                            ) {
-                                Text(
-                                    "Phone Landscape Navbar",
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-                        } else {
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(70.dp)
-                                    .background(MaterialTheme.colorScheme.surfaceVariant)
-                                    .padding(16.dp)
-                            ) {
-                                Text(
-                                    "Phone Portrait Navbar",
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .systemBarsPadding()
+                        .background(MaterialTheme.colorScheme.background)
+                ) {
+                    LayoutScaffold(
+                        navigationBar = { isTablet, inLandscape ->
+                            if (isTablet) {
+                                Row(
+                                    modifier = Modifier
+                                        .width(200.dp)
+                                        .fillMaxHeight()
+                                        .background(MaterialTheme.colorScheme.surfaceVariant)
+                                        .padding(16.dp)
+                                ) {
+                                    Text(
+                                        if (inLandscape) "Landscape Tablet Navbar" else "Tablet Navbar",
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                            } else if (inLandscape) {
+                                Row(
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .fillMaxHeight()
+                                        .background(MaterialTheme.colorScheme.surfaceVariant)
+                                        .padding(16.dp)
+                                ) {
+                                    Text(
+                                        "Phone Landscape Navbar",
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                            } else {
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(70.dp)
+                                        .background(MaterialTheme.colorScheme.surfaceVariant)
+                                        .padding(16.dp)
+                                ) {
+                                    Text(
+                                        "Phone Portrait Navbar",
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
                             }
                         }
-                    }
-                ) { _, _ ->
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(MaterialTheme.colorScheme.surface)
-                            .padding(16.dp)
-                    ) {
+                    ) { _, _ ->
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(MaterialTheme.colorScheme.surface)
+                                .padding(16.dp)
+                        ) {
 
-                        Text(
-                            text = "Is Compact Width: ${isCompactWidth()}",
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                        Text(
-                            text = "Is Medium Width: ${isMediumWidth()}",
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                        Text(
-                            text = "Is Expanded Width: ${isExpandedWidth()}",
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                        Text(
-                            text = "Is Compact Height: ${isCompactHeight()}",
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                        Text(
-                            text = "Is Medium Height: ${isMediumHeight()}",
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                        Text(
-                            text = "Is Expanded Height: ${isExpandedHeight()}",
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                        Text(
-                            text = "In Landscape: ${inLandscape()}",
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                        Text(
-                            text = "Is Portrait: ${inPortrait()}",
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                        Text(
-                            text = "Is Phone: ${isPhone()}",
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                        Text(
-                            text = "Is Tablet: ${isTablet()}",
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                        Text(
-                            text = "Is Foldable: $isFoldable",
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-
-                        if(isFoldable){
                             Text(
-                                text = "Is Half Open: $isHalfOpen",
+                                text = "Is Compact Width: ${isCompactWidth()}",
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = "Is Fully Open: $isFullyOpen",
+                                text = "Is Medium Width: ${isMediumWidth()}",
                                 color = MaterialTheme.colorScheme.onSurface
                             )
+                            Text(
+                                text = "Is Expanded Width: ${isExpandedWidth()}",
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Text(
+                                text = "Is Compact Height: ${isCompactHeight()}",
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Text(
+                                text = "Is Medium Height: ${isMediumHeight()}",
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Text(
+                                text = "Is Expanded Height: ${isExpandedHeight()}",
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Text(
+                                text = "In Landscape: ${inLandscape()}",
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Text(
+                                text = "Is Portrait: ${inPortrait()}",
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Text(
+                                text = "Is Phone: ${isPhone()}",
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Text(
+                                text = "Is Tablet: ${isTablet()}",
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Text(
+                                text = "Is Foldable: $isFoldable",
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+
+                            if (isFoldable) {
+                                Text(
+                                    text = "Is Half Open: $isHalfOpen",
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                                Text(
+                                    text = "Is Fully Open: $isFullyOpen",
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                            }
                         }
                     }
                 }
